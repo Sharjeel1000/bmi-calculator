@@ -3,38 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator</title>
+    <meta name="description" content="A simple, responsive Body Mass Index calculator.">
+    <title>BMI Calculator | HealthTools</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main class="app-shell container-fluid d-flex align-items-center justify-content-center py-5">
+        <div class="calculator-card">
+            <div class="brand-row d-flex align-items-center justify-content-center gap-2 mb-4">
+                <span class="brand-icon" aria-hidden="true">+</span>
+                <span class="brand-name">HealthTools</span>
+            </div>
 
-    <div class="container">
-        <h1>BMI Calculator</h1>
-        <p class="subtitle">Calculate your Body Mass Index</p>
+            <header class="text-center mb-4">
+                <span class="eyebrow">HEALTH & WELLNESS</span>
+                <h1 class="display-title mt-2">BMI Calculator</h1>
+                <p class="subtitle mb-0">A simple way to check your Body Mass Index.</p>
+            </header>
 
-        <div class="input-group">
-            <label for="height">Height (cm)</label>
-            <input type="number" id="height" placeholder="e.g. 165">
+            <form id="bmiForm" novalidate>
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height <span class="unit">(cm)</span></label>
+                    <div class="input-group input-group-lg custom-input">
+                        <span class="input-group-text" aria-hidden="true">↕</span>
+                        <input type="number" class="form-control" id="height"
+                               placeholder="e.g. 170" min="1" step="any"
+                               inputmode="decimal" required>
+                        <span class="input-group-text unit-tag">cm</span>
+                        <div class="invalid-feedback">Enter a valid height greater than zero.</div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="weight" class="form-label">Weight <span class="unit">(kg)</span></label>
+                    <div class="input-group input-group-lg custom-input">
+                        <span class="input-group-text" aria-hidden="true">⚖</span>
+                        <input type="number" class="form-control" id="weight"
+                               placeholder="e.g. 65" min="1" step="any"
+                               inputmode="decimal" required>
+                        <span class="input-group-text unit-tag">kg</span>
+                        <div class="invalid-feedback">Enter a valid weight greater than zero.</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn calculate-btn btn-lg w-100">
+                    Calculate my BMI <span aria-hidden="true">→</span>
+                </button>
+            </form>
+
+            <section id="result" class="result-panel mt-4" aria-live="polite">
+                <div class="result-topline">
+                    <span class="result-label">YOUR BMI</span>
+                    <span id="statusBadge" class="badge status-badge">Waiting</span>
+                </div>
+                <div class="bmi-number" id="bmiValue">--</div>
+                <p id="category" class="result-message mb-3">Enter your height and weight to see your result.</p>
+
+                <div class="bmi-scale" aria-label="Adult BMI reference categories">
+                    <div class="scale-segment underweight"></div>
+                    <div class="scale-segment healthy"></div>
+                    <div class="scale-segment overweight"></div>
+                    <div class="scale-segment obesity"></div>
+                </div>
+                <div class="scale-labels d-flex justify-content-between">
+                    <span>Underweight</span>
+                    <span>Healthy</span>
+                    <span>Overweight</span>
+                    <span>Obesity</span>
+                </div>
+            </section>
+
+            <div class="disclaimer mt-4">
+                <span aria-hidden="true">ⓘ</span>
+                BMI is a screening tool, not a medical diagnosis. Adult categories are intended for people aged 20 and older.
+            </div>
         </div>
+    </main>
 
-        <div class="input-group">
-            <label for="weight">Weight (kg)</label>
-            <input type="number" id="weight" placeholder="e.g. 60">
-        </div>
+    <footer class="page-footer text-center pb-4">
+        Made for everyday wellness <span aria-hidden="true">♥</span>
+    </footer>
 
-        <button onclick="calculateBMI()">Calculate BMI</button>
-
-        <div id="result" class="result">
-            <h2 id="bmiValue">--</h2>
-            <p id="category">Enter your details above</p>
-        </div>
-
-        <p class="note">
-            BMI is a screening tool, not a medical diagnosis.
-            Adult categories are intended for ages 20 and older.
-        </p>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
